@@ -28,26 +28,8 @@ public class TargetProductClient {
 	@Value("${target.product.option.url}")
 	private String tagetProductOptionUrl;
 
-	public void getProductPrice(Integer pId) {
-		String url = this.buildGetPriceUrl(pId);
 
-		try {
-			String responseText = restTemplate.getForObject(url, String.class);
-			/*PricingResponse<PriceTable> response = gson.fromJson(responseText, PricingResponse.class);
-			if (response.getResponseCode().equals(HttpStatus.OK.toString())
-					&& response.getResponseMessage().equalsIgnoreCase(ResponseMsg.SUCCESS.toString())) {
-				return response.getResponseBody();
-			}
-*/
-			
-			System.out.println();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-	}
 	private String buildGetPriceUrl(Integer pId) {
-		// TODO Auto-generated method stub
 		return tagetProductBaseUrl + "?"+tagetProductOptionUrl ;
 	}
 	public ProductPojo getProductInfo(Integer pId) {
@@ -56,16 +38,7 @@ public class TargetProductClient {
 
 		try {
 			String responseText = restTemplate.getForObject(url, String.class);
-			productPojo = gson.fromJson(responseText, ProductPojo.class);
-			/*PricingResponse<PriceTable> response = gson.fromJson(responseText, PricingResponse.class);
-			if (response.getResponseCode().equals(HttpStatus.OK.toString())
-					&& response.getResponseMessage().equalsIgnoreCase(ResponseMsg.SUCCESS.toString())) {
-				return response.getResponseBody();
-			}
-*/
-			
-			System.out.println(productPojo.getProduct().getItem().getProductDescription().getTitle());
-
+			productPojo = gson.fromJson(responseText, ProductPojo.class);		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

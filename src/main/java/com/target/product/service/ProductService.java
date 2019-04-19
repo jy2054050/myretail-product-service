@@ -2,6 +2,7 @@ package com.target.product.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,15 +27,15 @@ public class ProductService {
 	public GenericResponse<ProductResponse> getPrice(@PathVariable Integer productId) {
 		return productProcessor.productInfo(productId);
 	}
-	/*
-	@RequestMapping(value="/product/{productId}/price", method = RequestMethod.POST)
-	public GenericResponse<PriceTable> addPrice(@PathVariable Integer productId,@RequestBody String priceInfo) {
-		return pricingProcessor.productAddUpdatePrice(productId, priceInfo);
+	
+	@RequestMapping(value="/{productId}", method = RequestMethod.POST)
+	public GenericResponse<ProductResponse> addPrice(@PathVariable Integer productId,@RequestBody String priceInfo) {
+		return productProcessor.productAddUpdatePrice(productId, priceInfo);
 	}
 	
-	@RequestMapping(value="/product/{productId}/price", method = RequestMethod.PUT)
-	public GenericResponse<PriceTable> updatePrice(@PathVariable Integer productId, @RequestBody String priceInfo) {
-		return pricingProcessor.productAddUpdatePrice(productId, priceInfo);
+	@RequestMapping(value="/{productId}", method = RequestMethod.PUT)
+	public GenericResponse<ProductResponse>  updatePrice(@PathVariable Integer productId, @RequestBody String priceInfo) {
+		return productProcessor.productAddUpdatePrice(productId, priceInfo);
 	}
-	*/
+	
 }
